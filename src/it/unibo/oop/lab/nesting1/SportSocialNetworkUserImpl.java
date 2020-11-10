@@ -140,28 +140,36 @@ public class SportSocialNetworkUserImpl<U extends User> extends SocialNetworkUse
 			this.name = name;
 		}
 
-		public boolean equals(final Object o) {
-			if (o == null) {
-				return false;
-			}
-
-			if (o.hashCode() == hashCode()) {
-				return true;
-			}
-
-			return false;
-		}
-
-		public String getName() {
-			return name;
-		}
-
+		@Override
 		public int hashCode() {
-
-			if (hash == 0) {
-				hash = name.hashCode();
-			}
-			return hash;
+			final int prime = 31;
+			int result = 1;
+			result = prime * result + hash;
+			result = prime * result + ((name == null) ? 0 : name.hashCode());
+			return result;
 		}
+
+		@Override
+		public boolean equals(Object obj) {
+			if (this == obj)
+				return true;
+			if (obj == null)
+				return false;
+			if (getClass() != obj.getClass())
+				return false;
+			Sport other = (Sport) obj;
+			if (hash != other.hash)
+				return false;
+			if (name == null) {
+				if (other.name != null)
+					return false;
+			} else if (!name.equals(other.name))
+				return false;
+			return true;
+		}
+		
+		
+
+
 	}
 }
